@@ -9,8 +9,8 @@ require (
 	github.com/charmbracelet/lipgloss v1.1.0
 	github.com/pelletier/go-toml/v2 v2.3.1
 	github.com/spf13/cobra v1.10.2
-	github.com/twmb/franz-go v1.20.6
-	github.com/twmb/franz-go/pkg/kadm v1.17.2
+	github.com/twmb/franz-go v1.20.4
+	github.com/twmb/franz-go/pkg/kadm v1.17.1
 	github.com/vmihailenco/msgpack/v5 v5.4.1
 	golang.org/x/term v0.43.0
 	google.golang.org/protobuf v1.36.11
@@ -44,7 +44,7 @@ require (
 	github.com/twmb/franz-go/pkg/kmsg v1.13.1 // indirect
 	github.com/vmihailenco/tagparser/v2 v2.0.0 // indirect
 	github.com/xo/terminfo v0.0.0-20220910002029-abceb7e1c41e // indirect
-	golang.org/x/crypto v0.45.0 // indirect
+	golang.org/x/crypto v0.43.0 // indirect
 	golang.org/x/sys v0.44.0 // indirect
-	golang.org/x/text v0.36.0 // indirect
+	golang.org/x/text v0.30.0 // indirect
 )
