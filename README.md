@@ -2,7 +2,7 @@
 
 > **kafko — speak Kafka from your terminal**
 
-A modern, container-friendly Kafka CLI written in Go. Produce, consume, and inspect Kafka topics with a Unix pipe philosophy. **No JVM. No librdkafka.** Just a single static binary, ~15 MB, ready to drop into any container.
+A modern, container-friendly Kafka CLI written in Go. Produce, consume, and inspect Kafka topics with a Unix pipe philosophy. **No JVM. No librdkafka.** Just a single static binary, ~5 MB, ready to drop into any container.
 
 [![ci](https://github.com/darioajr/kafko/actions/workflows/ci.yaml/badge.svg)](https://github.com/darioajr/kafko/actions/workflows/ci.yaml)
 [![release](https://img.shields.io/github/v/release/darioajr/kafko?logo=github&sort=semver)](https://github.com/darioajr/kafko/releases)
