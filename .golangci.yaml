@@ -1,32 +1,38 @@
+version: "2"
+
 run:
   timeout: 5m
   tests: true
 
 linters:
+  default: standard
   enable:
-    - errcheck
-    - gofmt
-    - goimports
-    - govet
-    - ineffassign
     - misspell
     - revive
-    - staticcheck
     - unconvert
-    - unused
-
-linters-settings:
-  revive:
+  settings:
+    errcheck:
+      # stdout/stderr writes are intentionally unchecked — the tabwriter Flush
+      # at the end of each command surfaces the only error we can act on.
+      exclude-functions:
+        - fmt.Fprint
+        - fmt.Fprintf
+        - fmt.Fprintln
+    revive:
+      rules:
+        - name: var-naming
+        - name: package-comments
+        - name: exported
+          disabled: true
+        - name: unused-parameter
+          disabled: true
+  exclusions:
     rules:
-      - name: var-naming
-      - name: package-comments
-      - name: exported
-        disabled: true
-      - name: unused-parameter
-        disabled: true
+      - path: _test\.go
+        linters:
+          - errcheck
 
-issues:
-  exclude-rules:
-    - path: _test\.go
-      linters:
-        - errcheck
+formatters:
+  enable:
+    - gofmt
+    - goimports

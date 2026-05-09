@@ -1,6 +1,6 @@
 module github.com/darioajr/kafko
 
-go 1.26.2
+go 1.25.0
 
 require (
 	github.com/alecthomas/chroma/v2 v2.24.1

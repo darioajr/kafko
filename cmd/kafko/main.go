@@ -1,3 +1,4 @@
+// Command kafko is a modern, container-friendly Kafka CLI.
 package main
 
 import (
