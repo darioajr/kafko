@@ -23,6 +23,7 @@ A modern, container-friendly Kafka CLI written in Go. Produce, consume, and insp
 **Code**
 [![Go Version](https://img.shields.io/github/go-mod/go-version/darioajr/kafko?logo=go)](go.mod)
 [![Go Report](https://goreportcard.com/badge/github.com/darioajr/kafko)](https://goreportcard.com/report/github.com/darioajr/kafko)
+[![Codecov](https://img.shields.io/codecov/c/github/darioajr/kafko?logo=codecov)](https://codecov.io/gh/darioajr/kafko)
 
 **License**
 [![License](https://img.shields.io/github/license/darioajr/kafko)](LICENSE)
