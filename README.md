@@ -27,7 +27,6 @@ A modern, container-friendly Kafka CLI written in Go. Produce, consume, and insp
 **License**
 [![License](https://img.shields.io/github/license/darioajr/kafko)](LICENSE)
 [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fdarioajr%2Fkafko.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fdarioajr%2Fkafko?ref=badge_shield)
-
 ---
 
 ## Why kafko?
@@ -301,3 +300,6 @@ Release history is tracked in [CHANGELOG.md](CHANGELOG.md).
 ---
 
 *Inspired by [`kcat`](https://github.com/edenhill/kcat). Powered by [`franz-go`](https://github.com/twmb/franz-go), [`cobra`](https://github.com/spf13/cobra), and [`bubbletea`](https://github.com/charmbracelet/bubbletea).*
+
+
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fdarioajr%2Fkafko.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Fdarioajr%2Fkafko?ref=badge_large)
