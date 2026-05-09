@@ -263,9 +263,10 @@ Requires Go 1.23+.
 ## Roadmap
 
 - [ ] Avro decoder via Confluent Schema Registry
+- [ ] Avro decoder via Apicurio Schema Registry
 - [ ] OAUTHBEARER (incl. AWS MSK IAM)
 - [ ] Plugin pipeline (WASM transforms on records)
-- [ ] `kafko tap` — durable replicator between clusters
+- [x] `kafko tap` — durable replicator between clusters
 - [ ] Web UI (`kafko serve`) sharing the same engine
 
 ---
