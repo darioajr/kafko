@@ -1,0 +1,29 @@
+# kafko config — drop this at $XDG_CONFIG_HOME/kafko/config.toml
+# (defaults to ~/.config/kafko/config.toml).
+#
+# Select with `kafko -c <name> ...`. CLI flags always win over profile values.
+
+default_profile = "local"
+
+[profiles.local]
+brokers = ["localhost:9092"]
+
+[profiles.staging]
+brokers = ["kafka-0.staging.internal:9093", "kafka-1.staging.internal:9093"]
+tls = true
+sasl_mechanism = "SCRAM-SHA-512"
+sasl_username = "kafko"
+# Avoid putting the password here. Set KAFKO_SASL_PASSWORD in your shell.
+
+[profiles.msk]
+brokers = ["b-1.msk.amazonaws.com:9094", "b-2.msk.amazonaws.com:9094"]
+tls = true
+sasl_mechanism = "SCRAM-SHA-512"
+sasl_username = "app"
+
+[profiles.mtls]
+brokers = ["kafka.internal:9093"]
+tls = true
+tls_ca_file   = "/etc/kafko/ca.pem"
+tls_cert_file = "/etc/kafko/client.pem"
+tls_key_file  = "/etc/kafko/client.key"
