@@ -6,7 +6,7 @@
 
 <p align="center"><em>speak Kafka from your terminal</em></p>
 
-A modern, container-friendly Kafka CLI written in Go. Produce, consume, and inspect Kafka topics with a Unix pipe philosophy. **No JVM. No librdkafka.** Just a single static binary, ~7 MB, ready to drop into any container.
+A modern, container-friendly Kafka CLI written in Go. Produce, consume, and inspect Kafka topics with a Unix pipe philosophy. **No JVM. No librdkafka.** Just a single static binary, ~5 MB, ready to drop into any container.
 
 **Build**
 [![CI](https://github.com/darioajr/kafko/actions/workflows/ci.yaml/badge.svg)](https://github.com/darioajr/kafko/actions/workflows/ci.yaml)
@@ -39,7 +39,7 @@ A modern, container-friendly Kafka CLI written in Go. Produce, consume, and insp
 | Language | C | Go |
 | Kafka client | librdkafka (C) | franz-go (pure Go) |
 | Static binary | hard | trivial (`CGO_ENABLED=0`) |
-| Docker image | ~80 MB | ~7 MB (`FROM scratch`) |
+| Docker image | ~80 MB | ~5 MB (`FROM scratch`) |
 | Cross-compile | painful | `GOOS=linux GOARCH=arm64 go build` |
 | Config profiles | `-F` file | TOML profiles (`~/.config/kafko/config.toml`) |
 | Output formats | raw, JSON | raw, JSON (pretty + colored), hex, base64, **MessagePack**, **Protobuf** |

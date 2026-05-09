@@ -27,6 +27,14 @@ builds:
       - amd64
       - arm64
 
+upx:
+  - enabled: true
+    ids: [kafko]
+    goos: [linux, windows]
+    goarch: [amd64, arm64]
+    compress: best
+    lzma: true
+
 archives:
   - id: default
     name_template: >-
