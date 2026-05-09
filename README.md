@@ -38,8 +38,31 @@ A modern, container-friendly Kafka CLI written in Go. Produce, consume, and insp
 ### Homebrew (macOS / Linux)
 
 ```sh
-brew install darioajr/tap/kafko   # tap coming soon
+brew install darioajr/tap/kafko
 ```
+
+### Linux packages (.deb / .rpm / .apk)
+
+Native packages for `linux/amd64` and `linux/arm64` are attached to every [release](https://github.com/darioajr/kafko/releases). Replace `<ver>` with the release version (e.g. `0.3.1`) and `<arch>` with `amd64` or `arm64`.
+
+```sh
+# Debian / Ubuntu
+curl -LO https://github.com/darioajr/kafko/releases/latest/download/kafko_<ver>_linux_<arch>.deb
+sudo dpkg -i kafko_*.deb
+
+# RHEL / Fedora / Rocky / Alma
+sudo rpm -i https://github.com/darioajr/kafko/releases/latest/download/kafko_<ver>_linux_<arch>.rpm
+
+# Alpine
+curl -LO https://github.com/darioajr/kafko/releases/latest/download/kafko_<ver>_linux_<arch>.apk
+sudo apk add --allow-untrusted kafko_*.apk
+
+# Arch / Manjaro
+curl -LO https://github.com/darioajr/kafko/releases/latest/download/kafko_<ver>_linux_<arch>.pkg.tar.zst
+sudo pacman -U kafko_*.pkg.tar.zst
+```
+
+The binary lands at `/usr/bin/kafko`; docs at `/usr/share/doc/kafko/`.
 
 ### Go
 

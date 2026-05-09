@@ -39,6 +39,56 @@ archives:
       - README.md
       - LICENSE
 
+nfpms:
+  - id: kafko
+    package_name: kafko
+    ids: [kafko]
+    vendor: Dario Alves Junior
+    homepage: https://github.com/darioajr/kafko
+    maintainer: Dario Alves Junior <darioajr@gmail.com>
+    description: Modern Kafka CLI
+    license: MIT
+    formats:
+      - deb
+      - rpm
+      - apk
+      - archlinux
+    bindir: /usr/bin
+    section: utils
+    priority: optional
+    contents:
+      - src: ./LICENSE
+        dst: /usr/share/doc/kafko/LICENSE
+      - src: ./README.md
+        dst: /usr/share/doc/kafko/README.md
+    rpm:
+      group: Applications/System
+    deb:
+      lintian_overrides:
+        - statically-linked-binary
+        - changelog-file-missing-in-deb-package
+
+brews:
+  - name: kafko
+    ids: [default]
+    repository:
+      owner: darioajr
+      name: homebrew-tap
+      branch: main
+      token: "{{ .Env.HOMEBREW_TAP_TOKEN }}"
+    directory: Formula
+    homepage: https://github.com/darioajr/kafko
+    description: Modern Kafka CLI — speak Kafka from your terminal
+    license: MIT
+    commit_author:
+      name: goreleaserbot
+      email: bot@goreleaser.com
+    commit_msg_template: "brew formula update for {{ .ProjectName }} {{ .Tag }}"
+    test: |
+      system "#{bin}/kafko", "version"
+    install: |
+      bin.install "kafko"
+
 checksum:
   name_template: "checksums.txt"
 
