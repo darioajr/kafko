@@ -20,7 +20,7 @@ A modern, container-friendly Kafka CLI written in Go. Produce, consume, and insp
 | Language | C | Go |
 | Kafka client | librdkafka (C) | franz-go (pure Go) |
 | Static binary | hard | trivial (`CGO_ENABLED=0`) |
-| Docker image | ~80 MB | ~15 MB (`FROM scratch`) |
+| Docker image | ~80 MB | ~5 MB (`FROM scratch`) |
 | Cross-compile | painful | `GOOS=linux GOARCH=arm64 go build` |
 | Config profiles | `-F` file | TOML profiles (`~/.config/kafko/config.toml`) |
 | Output formats | raw, JSON | raw, JSON (pretty + colored), hex, base64, **MessagePack**, **Protobuf** |

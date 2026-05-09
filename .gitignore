@@ -6,6 +6,8 @@
 *.dylib
 /bin/
 /dist/
+/.docker-context/
+/.tmp/
 
 # Tests
 *.test

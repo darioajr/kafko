@@ -77,11 +77,21 @@ docker-bin: ## Cross-compile a linux binary for container packaging
 	CGO_ENABLED=0 GOOS=linux GOARCH=$(HOST_ARCH) \
 	  go build -trimpath -ldflags="$(LDFLAGS)" -o bin/$(LINUX_BIN) ./cmd/kafko
 
+# The Dockerfile expects $TARGETPLATFORM/kafko to match what goreleaser
+# stages, so we mirror that layout in a temp context dir.
+DOCKER_CTX := .docker-context
+DOCKER_PLATFORM := linux/$(HOST_ARCH)
+
 .PHONY: docker
 docker: docker-bin engine ## Build local container image (auto-detects docker or podman)
-	@cp bin/$(LINUX_BIN) ./$(BIN)
-	@trap 'rm -f ./$(BIN)' EXIT INT TERM; \
-	  $(CONTAINER_ENGINE) build -t $(BIN):$(VERSION) -t $(BIN):latest .
+	@rm -rf $(DOCKER_CTX)
+	@mkdir -p $(DOCKER_CTX)/$(DOCKER_PLATFORM)
+	@cp bin/$(LINUX_BIN) $(DOCKER_CTX)/$(DOCKER_PLATFORM)/$(BIN)
+	@cp Dockerfile $(DOCKER_CTX)/Dockerfile
+	@trap 'rm -rf $(DOCKER_CTX)' EXIT INT TERM; \
+	  $(CONTAINER_ENGINE) build \
+	    --build-arg TARGETPLATFORM=$(DOCKER_PLATFORM) \
+	    -t $(BIN):$(VERSION) -t $(BIN):latest $(DOCKER_CTX)
 
 .PHONY: snapshot
 snapshot: ## goreleaser local snapshot (binaries only, skips container build)
@@ -100,4 +110,4 @@ endif
 
 .PHONY: clean
 clean: ## Remove build artifacts
-	rm -rf bin dist coverage.out .tmp
+	rm -rf bin dist coverage.out .tmp $(DOCKER_CTX)

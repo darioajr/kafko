@@ -64,90 +64,34 @@ changelog:
     - title: Other
       order: 999
 
-# Each docker entry builds one platform-specific image and pushes the same
-# tarball to ghcr.io, Docker Hub and Quay. Manifests below stitch amd64+arm64
-# into multi-arch refs (`:latest`, `:vX.Y.Z`) on each registry.
-dockers:
-  - id: kafko-amd64
-    use: buildx
-    goarch: amd64
+# Single buildx-driven multi-arch image, pushed to all three registries.
+# Replaces the legacy `dockers` + `docker_manifests` pair (deprecated since
+# goreleaser v2.x). SBOM is generated automatically (sbom: true is the
+# default). The Dockerfile uses ${TARGETPLATFORM}/kafko so buildx picks
+# the right binary per platform.
+dockers_v2:
+  - id: kafko
     dockerfile: Dockerfile
-    image_templates:
-      - "ghcr.io/darioajr/kafko:{{ .Version }}-amd64"
-      - "ghcr.io/darioajr/kafko:latest-amd64"
-      - "docker.io/darioajr/kafko:{{ .Version }}-amd64"
-      - "docker.io/darioajr/kafko:latest-amd64"
-      - "quay.io/darioajr/kafko:{{ .Version }}-amd64"
-      - "quay.io/darioajr/kafko:latest-amd64"
-    build_flag_templates:
-      - "--platform=linux/amd64"
-      - "--build-arg=VERSION={{ .Version }}"
-      - "--build-arg=COMMIT={{ .Commit }}"
-      - "--build-arg=DATE={{ .Date }}"
-      - "--label=org.opencontainers.image.title=kafko"
-      - "--label=org.opencontainers.image.description=Modern Kafka CLI"
-      - "--label=org.opencontainers.image.source=https://github.com/darioajr/kafko"
-      - "--label=org.opencontainers.image.url=https://github.com/darioajr/kafko"
-      - "--label=org.opencontainers.image.documentation=https://github.com/darioajr/kafko#readme"
-      - "--label=org.opencontainers.image.version={{ .Version }}"
-      - "--label=org.opencontainers.image.revision={{ .FullCommit }}"
-      - "--label=org.opencontainers.image.licenses=MIT"
-
-  - id: kafko-arm64
-    use: buildx
-    goarch: arm64
-    dockerfile: Dockerfile
-    image_templates:
-      - "ghcr.io/darioajr/kafko:{{ .Version }}-arm64"
-      - "ghcr.io/darioajr/kafko:latest-arm64"
-      - "docker.io/darioajr/kafko:{{ .Version }}-arm64"
-      - "docker.io/darioajr/kafko:latest-arm64"
-      - "quay.io/darioajr/kafko:{{ .Version }}-arm64"
-      - "quay.io/darioajr/kafko:latest-arm64"
-    build_flag_templates:
-      - "--platform=linux/arm64"
-      - "--build-arg=VERSION={{ .Version }}"
-      - "--build-arg=COMMIT={{ .Commit }}"
-      - "--build-arg=DATE={{ .Date }}"
-      - "--label=org.opencontainers.image.title=kafko"
-      - "--label=org.opencontainers.image.description=Modern Kafka CLI"
-      - "--label=org.opencontainers.image.source=https://github.com/darioajr/kafko"
-      - "--label=org.opencontainers.image.url=https://github.com/darioajr/kafko"
-      - "--label=org.opencontainers.image.documentation=https://github.com/darioajr/kafko#readme"
-      - "--label=org.opencontainers.image.version={{ .Version }}"
-      - "--label=org.opencontainers.image.revision={{ .FullCommit }}"
-      - "--label=org.opencontainers.image.licenses=MIT"
-
-docker_manifests:
-  # GHCR
-  - name_template: "ghcr.io/darioajr/kafko:{{ .Version }}"
-    image_templates:
-      - "ghcr.io/darioajr/kafko:{{ .Version }}-amd64"
-      - "ghcr.io/darioajr/kafko:{{ .Version }}-arm64"
-  - name_template: "ghcr.io/darioajr/kafko:latest"
-    image_templates:
-      - "ghcr.io/darioajr/kafko:latest-amd64"
-      - "ghcr.io/darioajr/kafko:latest-arm64"
-
-  # Docker Hub
-  - name_template: "docker.io/darioajr/kafko:{{ .Version }}"
-    image_templates:
-      - "docker.io/darioajr/kafko:{{ .Version }}-amd64"
-      - "docker.io/darioajr/kafko:{{ .Version }}-arm64"
-  - name_template: "docker.io/darioajr/kafko:latest"
-    image_templates:
-      - "docker.io/darioajr/kafko:latest-amd64"
-      - "docker.io/darioajr/kafko:latest-arm64"
-
-  # Quay
-  - name_template: "quay.io/darioajr/kafko:{{ .Version }}"
-    image_templates:
-      - "quay.io/darioajr/kafko:{{ .Version }}-amd64"
-      - "quay.io/darioajr/kafko:{{ .Version }}-arm64"
-  - name_template: "quay.io/darioajr/kafko:latest"
-    image_templates:
-      - "quay.io/darioajr/kafko:latest-amd64"
-      - "quay.io/darioajr/kafko:latest-arm64"
+    ids: [kafko]
+    images:
+      - ghcr.io/darioajr/kafko
+      - docker.io/darioajr/kafko
+      - quay.io/darioajr/kafko
+    tags:
+      - "{{ .Version }}"
+      - latest
+    platforms:
+      - linux/amd64
+      - linux/arm64
+    labels:
+      org.opencontainers.image.title: kafko
+      org.opencontainers.image.description: Modern Kafka CLI
+      org.opencontainers.image.source: https://github.com/darioajr/kafko
+      org.opencontainers.image.url: https://github.com/darioajr/kafko
+      org.opencontainers.image.documentation: https://github.com/darioajr/kafko#readme
+      org.opencontainers.image.version: "{{ .Version }}"
+      org.opencontainers.image.revision: "{{ .FullCommit }}"
+      org.opencontainers.image.licenses: MIT
 
 release:
   github:
