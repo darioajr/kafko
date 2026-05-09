@@ -11,6 +11,7 @@ require (
 	github.com/spf13/cobra v1.10.2
 	github.com/twmb/franz-go v1.21.1
 	github.com/twmb/franz-go/pkg/kadm v1.18.0
+	github.com/twmb/franz-go/pkg/kfake v0.0.0-20260504210720-963be6fd5989
 	github.com/vmihailenco/msgpack/v5 v5.4.1
 	golang.org/x/term v0.43.0
 	google.golang.org/protobuf v1.36.11
@@ -40,7 +41,6 @@ require (
 	github.com/rivo/uniseg v0.4.7 // indirect
 	github.com/sahilm/fuzzy v0.1.2 // indirect
 	github.com/spf13/pflag v1.0.10 // indirect
-	github.com/twmb/franz-go/pkg/kfake v0.0.0-20260504210720-963be6fd5989 // indirect
 	github.com/twmb/franz-go/pkg/kmsg v1.13.1 // indirect
 	github.com/vmihailenco/tagparser/v2 v2.0.0 // indirect
 	github.com/xo/terminfo v0.0.0-20220910002029-abceb7e1c41e // indirect
