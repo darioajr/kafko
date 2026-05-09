@@ -26,9 +26,9 @@ func TestPickString(t *testing.T) {
 
 func TestPickStrings(t *testing.T) {
 	cases := []struct {
-		name    string
-		a, b    []string
-		want    []string
+		name string
+		a, b []string
+		want []string
 	}{
 		{"both empty", nil, nil, nil},
 		{"only fallback", nil, []string{"x"}, []string{"x"}},
