@@ -7,6 +7,10 @@ import (
 	"github.com/twmb/franz-go/pkg/kgo"
 )
 
+// ConsumeOptions configures NewConsumer. When Partition and Offset are both
+// set (>= 0), the consumer pins to that partition+offset and the Group field
+// is ignored. Otherwise topics are subscribed via ConsumeTopics, with the
+// reset position determined by FromBeginning.
 type ConsumeOptions struct {
 	Topics        []string
 	Group         string
@@ -47,6 +51,9 @@ func NewConsumer(client ClientOptions, c ConsumeOptions) (*kgo.Client, error) {
 	return NewClient(client)
 }
 
+// Message is the unit emitted by PollLoop. Exactly one of Record or Err is
+// populated per message: Record for a successful fetch, Err for a per-partition
+// fetch error surfaced by the underlying client.
 type Message struct {
 	Record *kgo.Record
 	Err    error

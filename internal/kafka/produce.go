@@ -7,11 +7,16 @@ import (
 	"github.com/twmb/franz-go/pkg/kgo"
 )
 
+// ProducerOptions configures NewProducer. The "leader" and "none" ack modes
+// disable idempotent writes (kgo's idempotent producer requires AllISRAcks).
 type ProducerOptions struct {
-	RequiredAcks string // all|leader|none
-	Compression  string // none|gzip|snappy|lz4|zstd
+	RequiredAcks string // all|leader|none (default: all)
+	Compression  string // none|gzip|snappy|lz4|zstd (default: none)
 }
 
+// NewProducer builds a *kgo.Client tuned for producing. It returns an error
+// for unknown RequiredAcks or Compression values, or for any error surfaced
+// by NewClient.
 func NewProducer(client ClientOptions, p ProducerOptions) (*kgo.Client, error) {
 	var extra []kgo.Opt
 

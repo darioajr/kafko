@@ -14,6 +14,9 @@ import (
 	"github.com/twmb/franz-go/pkg/sasl/scram"
 )
 
+// AuthOptions controls TLS and SASL credentials. Zero value disables both.
+// For mTLS, TLSCertFile and TLSKeyFile must be set together.
+// SASLPassword falls back to the KAFKO_SASL_PASSWORD environment variable when empty.
 type AuthOptions struct {
 	TLS         bool
 	TLSCAFile   string
@@ -21,18 +24,23 @@ type AuthOptions struct {
 	TLSKeyFile  string
 	TLSInsecure bool
 
-	SASLMechanism string
+	SASLMechanism string // PLAIN|SCRAM-SHA-256|SCRAM-SHA-512
 	SASLUsername  string
 	SASLPassword  string
 }
 
+// ClientOptions is the input to NewClient. ExtraOpts is appended last and
+// can override any kgo.Opt set via the Brokers/ClientID/Auth fields.
 type ClientOptions struct {
 	Brokers   []string
-	ClientID  string
+	ClientID  string // defaults to "kafko"
 	Auth      AuthOptions
 	ExtraOpts []kgo.Opt
 }
 
+// NewClient builds a *kgo.Client from kafko's option set. Returns an error
+// when Brokers is empty, when SASL credentials are incomplete, or when TLS
+// material fails to load.
 func NewClient(opts ClientOptions) (*kgo.Client, error) {
 	if len(opts.Brokers) == 0 {
 		return nil, errors.New("no brokers configured (use --brokers or a profile)")

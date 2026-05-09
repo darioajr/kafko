@@ -23,6 +23,8 @@ import (
 	"github.com/pelletier/go-toml/v2"
 )
 
+// Profile is a single named connection in config.toml. CLI flags override
+// matching profile fields at runtime; see resolveClientOptions in package cli.
 type Profile struct {
 	Brokers       []string `toml:"brokers"`
 	ClientID      string   `toml:"client_id"`
@@ -36,11 +38,16 @@ type Profile struct {
 	SASLPassword  string   `toml:"sasl_password"`
 }
 
+// File is the parsed config.toml. DefaultProfile names the profile used when
+// the user passes no --profile flag.
 type File struct {
 	DefaultProfile string             `toml:"default_profile"`
 	Profiles       map[string]Profile `toml:"profiles"`
 }
 
+// DefaultDir returns the directory kafko looks in for config.toml.
+// Resolution order: $KAFKO_CONFIG_DIR, $XDG_CONFIG_HOME/kafko,
+// ~/.config/kafko.
 func DefaultDir() (string, error) {
 	if d := os.Getenv("KAFKO_CONFIG_DIR"); d != "" {
 		return d, nil

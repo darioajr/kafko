@@ -8,6 +8,8 @@ import (
 	"github.com/twmb/franz-go/pkg/kgo"
 )
 
+// Options selects an output format and tunes how each record is rendered.
+// An empty KeySeparator defaults to "\t" inside New.
 type Options struct {
 	Format       string // raw|json|hex|base64|msgpack|proto
 	Pretty       bool   // colorize+indent (json/msgpack/proto)
@@ -21,10 +23,15 @@ type Options struct {
 	ProtoMessage string // fully-qualified message name
 }
 
+// Formatter writes a single Kafka record in the chosen output shape.
+// Implementations must be safe for sequential calls from one goroutine.
 type Formatter interface {
 	WriteRecord(w io.Writer, r *kgo.Record) error
 }
 
+// New returns the Formatter that matches opts.Format. It returns an error
+// for unknown formats or for "proto" when the descriptor file or message
+// name is missing or invalid.
 func New(opts Options) (Formatter, error) {
 	if opts.KeySeparator == "" {
 		opts.KeySeparator = "\t"

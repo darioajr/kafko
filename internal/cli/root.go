@@ -32,6 +32,9 @@ type globalOptions struct {
 
 var globalOpts = &globalOptions{}
 
+// NewRootCmd returns the root cobra command with every subcommand and
+// persistent flag wired up. Each call returns a fresh tree, so tests can
+// build and execute commands in isolation.
 func NewRootCmd() *cobra.Command {
 	cmd := &cobra.Command{
 		Use:   "kafko",
@@ -73,6 +76,8 @@ No JVM, no librdkafka — just a single static binary.`,
 	return cmd
 }
 
+// Execute runs the root command against os.Args. It is the entrypoint
+// invoked from cmd/kafko/main.go.
 func Execute() error {
 	return NewRootCmd().Execute()
 }
