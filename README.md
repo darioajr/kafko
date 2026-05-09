@@ -8,10 +8,25 @@
 
 A modern, container-friendly Kafka CLI written in Go. Produce, consume, and inspect Kafka topics with a Unix pipe philosophy. **No JVM. No librdkafka.** Just a single static binary, ~7 MB, ready to drop into any container.
 
-[![ci](https://github.com/darioajr/kafko/actions/workflows/ci.yaml/badge.svg)](https://github.com/darioajr/kafko/actions/workflows/ci.yaml)
-[![release](https://img.shields.io/github/v/release/darioajr/kafko?logo=github&sort=semver)](https://github.com/darioajr/kafko/releases)
-[![go report](https://goreportcard.com/badge/github.com/darioajr/kafko)](https://goreportcard.com/report/github.com/darioajr/kafko)
-[![license](https://img.shields.io/github/license/darioajr/kafko)](LICENSE)
+**Build**
+[![CI](https://github.com/darioajr/kafko/actions/workflows/ci.yaml/badge.svg)](https://github.com/darioajr/kafko/actions/workflows/ci.yaml)
+[![Release](https://github.com/darioajr/kafko/actions/workflows/release.yaml/badge.svg)](https://github.com/darioajr/kafko/actions/workflows/release.yaml)
+
+**Release & Containers**
+[![GitHub Release](https://img.shields.io/github/v/release/darioajr/kafko?style=flat&logo=github)](https://github.com/darioajr/kafko/releases/latest)
+[![Docker Hub](https://img.shields.io/docker/v/darioajr/kafko?sort=semver&logo=docker&label=Docker%20Hub)](https://hub.docker.com/r/darioajr/kafko)
+[![Docker Pulls](https://img.shields.io/docker/pulls/darioajr/kafko?logo=docker)](https://hub.docker.com/r/darioajr/kafko)
+[![Docker Image Size](https://img.shields.io/docker/image-size/darioajr/kafko?sort=semver&logo=docker)](https://hub.docker.com/r/darioajr/kafko)
+[![GHCR](https://img.shields.io/github/v/release/darioajr/kafko?sort=semver&logo=github&label=ghcr.io)](https://github.com/darioajr/kafko/pkgs/container/kafko)
+[![Quay.io](https://img.shields.io/github/v/release/darioajr/kafko?sort=semver&logo=redhat&label=quay.io)](https://quay.io/repository/darioajr/kafko)
+
+**Code**
+[![Go Version](https://img.shields.io/github/go-mod/go-version/darioajr/kafko?logo=go)](go.mod)
+[![Go Report](https://goreportcard.com/badge/github.com/darioajr/kafko)](https://goreportcard.com/report/github.com/darioajr/kafko)
+
+**License**
+[![License](https://img.shields.io/github/license/darioajr/kafko)](LICENSE)
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fdarioajr%2Fkafko.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fdarioajr%2Fkafko?ref=badge_shield)
 
 ---
 
@@ -273,11 +288,15 @@ Requires Go 1.23+.
 
 ## Contributing
 
-PRs welcome — see [CONTRIBUTING.md](CONTRIBUTING.md).
+PRs welcome — see [CONTRIBUTING.md](CONTRIBUTING.md). By participating in this project you agree to abide by the [Code of Conduct](CODE_OF_CONDUCT.md).
+
+Release history is tracked in [CHANGELOG.md](CHANGELOG.md).
 
 ## License
 
 [MIT](LICENSE) © Dario Alves Junior
+
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fdarioajr%2Fkafko.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Fdarioajr%2Fkafko?ref=badge_large)
 
 ---
 
