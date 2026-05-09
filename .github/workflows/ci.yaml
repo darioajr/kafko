@@ -8,12 +8,8 @@ on:
 permissions:
   contents: read
 
-# Pinned to Go 1.25.x because golangci-lint v2.5.0 ships a go/types built
-# with Go 1.25 and panics when the toolchain (and therefore the stdlib)
-# is Go 1.26+. Bump back to "stable" once a golangci-lint release built
-# with Go 1.26 is available.
 env:
-  GO_VERSION: "1.25.x"
+  GO_VERSION: stable
 
 jobs:
   lint:
@@ -27,7 +23,7 @@ jobs:
       - name: golangci-lint
         uses: golangci/golangci-lint-action@v7
         with:
-          version: v2.5.0
+          version: v2.12.2
           args: --timeout=5m
 
   test:
