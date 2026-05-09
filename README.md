@@ -55,7 +55,13 @@ docker run --rm -it quay.io/darioajr/kafko:latest    --help   # Quay.io
 
 ### Pre-built binaries
 
-Grab the archive for your OS/arch from the [releases page](https://github.com/darioajr/kafko/releases).
+Grab the archive for your OS/arch from the [releases page](https://github.com/darioajr/kafko/releases). Each release ships:
+
+| OS      | amd64 | arm64 |
+|---------|:-----:|:-----:|
+| Linux   |   ✓   |   ✓   |
+| macOS   |   ✓   |   ✓   |
+| Windows |   ✓   |   ✓   |
 
 ---
 

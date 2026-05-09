@@ -9,6 +9,9 @@ VERSION ?= $(shell git describe --tags --always --dirty 2>/dev/null || echo dev)
 COMMIT  ?= $(shell git rev-parse --short HEAD 2>/dev/null || echo none)
 DATE    ?= $(shell date -u +%Y-%m-%dT%H:%M:%SZ)
 
+HOST_ARCH := $(shell go env GOARCH)
+LINUX_BIN := $(BIN)_linux_$(HOST_ARCH)
+
 LDFLAGS := -s -w \
   -X $(LDFLAGS_PKG).Version=$(VERSION) \
   -X $(LDFLAGS_PKG).Commit=$(COMMIT) \
@@ -68,13 +71,17 @@ engine: ## Show which container engine will be used
 	  echo "no container engine found (install docker or podman)"; exit 1; \
 	fi
 
+.PHONY: docker-bin
+docker-bin: ## Cross-compile a linux binary for container packaging
+	@mkdir -p bin
+	CGO_ENABLED=0 GOOS=linux GOARCH=$(HOST_ARCH) \
+	  go build -trimpath -ldflags="$(LDFLAGS)" -o bin/$(LINUX_BIN) ./cmd/kafko
+
 .PHONY: docker
-docker: engine ## Build local container image (auto-detects docker or podman)
-	$(CONTAINER_ENGINE) build \
-	  --build-arg VERSION=$(VERSION) \
-	  --build-arg COMMIT=$(COMMIT) \
-	  --build-arg DATE=$(DATE) \
-	  -t $(BIN):$(VERSION) -t $(BIN):latest .
+docker: docker-bin engine ## Build local container image (auto-detects docker or podman)
+	@cp bin/$(LINUX_BIN) ./$(BIN)
+	@trap 'rm -f ./$(BIN)' EXIT INT TERM; \
+	  $(CONTAINER_ENGINE) build -t $(BIN):$(VERSION) -t $(BIN):latest .
 
 .PHONY: snapshot
 snapshot: ## goreleaser local snapshot (binaries only, skips container build)
