@@ -2,12 +2,61 @@
 
 All notable changes to kafko will be documented in this file.
 
-## [Unreleased]
+## [0.4.1] - 2026-11-20
+
+### 🐛 Bug Fixes
+
+- **deps:** Atualiza dependências e corrige vulnerabilidades conhecidas
+- atualiza bibliotecas diretas e transitivas
+    - exige Go 1.26.11 e alinha CI e releases à série 1.26
+    - adiciona auditoria com govulncheck ao CI
+    - atualiza requisitos na documentação
+([a8be2ed](https://github.com/darioajr/kafko/commit/a8be2edbec3cba815b52de75f18161c0b21ddc79))
+- Unit test
+([8723209](https://github.com/darioajr/kafko/commit/8723209a9d6fdc05c8675d1e2918a987a52d2b66))
+- Add kfake direct dependency
+([5369bff](https://github.com/darioajr/kafko/commit/5369bff7a6f6910e299ae8e9ebb6ef3dcee3e630))
 
 ### 📚 Documentation
 
 - Kafko tap flag [skip ci]
 ([8d68f41](https://github.com/darioajr/kafko/commit/8d68f41e9a200f6b95a0c661d845851d3a6072c0))
+- Add project info
+([b0e4a93](https://github.com/darioajr/kafko/commit/b0e4a9383c54178916c35257b78fc67b9349d171))
+- Fix licence banner [skip ci]
+([676f927](https://github.com/darioajr/kafko/commit/676f927b6806a941ba947ecdb21510805cf030a0))
+- Add new unit tests and docstrings
+([3a65da7](https://github.com/darioajr/kafko/commit/3a65da7647cc91d77e3f103e43975f5762eb79cc))
+- Add codecov badge [skip ci]
+([51d5617](https://github.com/darioajr/kafko/commit/51d561709cf1b2e0264b9ab0df3ac71aa51c2002))
+
+### 📝 Other
+
+- Add license scan report and status
+
+Signed off by: fossabot <badges@fossa.com>
+([570d183](https://github.com/darioajr/kafko/commit/570d183f35e4107cc0a9c5947ce4dd418cf9b130))
+- Merge branch 'main' into add-license-scan-badge
+([cef8436](https://github.com/darioajr/kafko/commit/cef8436d7749a9b85db6d2b4faff578e0aa084e2))
+- Merge pull request #1 from fossabot/add-license-scan-badge
+
+Add license scan report and status
+([e380eb9](https://github.com/darioajr/kafko/commit/e380eb921815860fa86eb547b59ac7d18d27bc23))
+
+### 🔧 CI/CD
+
+- Updated lint version
+([e40274b](https://github.com/darioajr/kafko/commit/e40274bc985216c115b771297c230b496d697754))
+
+### 🚀 Features
+
+- New upx release
+([d384e2e](https://github.com/darioajr/kafko/commit/d384e2e0e18ff72a7b6e5fec8de4e5ac7d9196be))
+
+### 🧪 Tests
+
+- Add new unit test
+([264c993](https://github.com/darioajr/kafko/commit/264c99336f3b321ea0d73ef75ff6f4738c5ca26c))
 
 ## [0.4.0] - 2026-05-09
 
