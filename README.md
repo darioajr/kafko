@@ -271,7 +271,7 @@ make test       # unit tests with race detector
 make snapshot   # goreleaser local cross-build (linux/darwin/windows × amd64/arm64)
 ```
 
-Requires Go 1.23+.
+Requires Go 1.26.11+.
 
 ---
 

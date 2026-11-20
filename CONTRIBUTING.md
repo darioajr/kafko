@@ -12,7 +12,7 @@ make build
 make test
 ```
 
-Requires Go 1.23+.
+Requires Go 1.26.11+.
 
 ## Running against a local Kafka
 
